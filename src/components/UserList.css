@@ -1,0 +1,23 @@
+.users {
+    /* margin: 2rem auto;
+    width: 90%;
+    max-width: 40rem; */
+    width: 30rem;
+    max-width: 90%;
+    margin: 3rem auto;
+    padding: 2rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    list-style-type: none;
+  }
+  
+  .users ul {
+    list-style: none;
+    padding: 1rem;
+  }
+  
+  .users li {
+    border: 1px solid rgb(244, 237, 237);
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+  }
