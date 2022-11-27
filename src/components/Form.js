@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./Form.css";
 import Button from 'react-bootstrap/Button';
+import ErrorModal from "./ErrorModal";
 
 
 const UserForm = (props) => {
   const [enterUserName, setUserName] = useState("");
   const [enterAge, setAge] = useState("");
+  const [error, setError] = useState();
   
   //For user name
   const userNameHandler = (event) => {
@@ -22,11 +24,19 @@ const UserForm = (props) => {
     event.preventDefault();
     
     if (enterUserName.trim().length === 0 || enterAge.trim().length === 0){
-      return; // Return a message component here
+      setError({
+        title: 'Invalid Input',
+        message: 'Please enter a valid name and age.'
+      });
+      return;
     }
     
     if (+enterAge < 1) {
-      return; // return a message here
+      setError({
+        title: 'Invalid Age',
+        message: 'Please enter a number greater than 0'
+      });
+      return; 
     }
     
     // console.log(enterUserName, enterAge);    
@@ -35,9 +45,14 @@ const UserForm = (props) => {
     setUserName("");
     setAge("");
   };
+  
+  const errorHandler = () => {
+    setError(null);
+  };
     
   return (
     <div>
+      {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler}></ErrorModal>}
       <form id="goal-form" onSubmit={submitHandler}>
         <div className="form-control">
           <label>User Name</label>
