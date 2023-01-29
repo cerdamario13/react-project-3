@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./Form.css";
 import Button from 'react-bootstrap/Button';
 import ErrorModal from "./ErrorModal";
 
 
 const UserForm = (props) => {
-  const [enterUserName, setUserName] = useState("");
-  const [enterAge, setAge] = useState("");
+  
+  //Using refs to show how to make code shorter
+  const nameInputRef = useRef();
+  const [enterAge, setAge] = useState(""); //using state
   const [error, setError] = useState();
   
-  //For user name
-  const userNameHandler = (event) => {
-    setUserName(event.target.value);
-  };
   
   //For Age
   const ageHandler = (event) => {
@@ -23,7 +21,7 @@ const UserForm = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     
-    if (enterUserName.trim().length === 0 || enterAge.trim().length === 0){
+    if (nameInputRef.current.value.trim().length === 0 || enterAge.trim().length === 0){
       setError({
         title: 'Invalid Input',
         message: 'Please enter a valid name and age.'
@@ -40,10 +38,10 @@ const UserForm = (props) => {
     }
     
     // console.log(enterUserName, enterAge);    
-    props.onFormSubmit(enterUserName, enterAge);
+    props.onFormSubmit(nameInputRef.current.value, enterAge);
     // Setting the values back to empty
-    setUserName("");
     setAge("");
+    nameInputRef.current.value = ''; //this is only for forms. It is not recommended to change the DOM...
   };
   
   const errorHandler = () => {
@@ -58,8 +56,9 @@ const UserForm = (props) => {
           <label>User Name</label>
           <input 
             type="text"
-            value={enterUserName}
-            onChange={userNameHandler}
+            // value={enterUserName}
+            // onChange={userNameHandler}
+            ref={nameInputRef}
           ></input>
         </div>
         <div className="form-control">
