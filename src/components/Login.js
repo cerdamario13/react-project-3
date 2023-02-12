@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import Card from '../UI/Card/Card';
-import classes from './Login.module.css';
-import Button from '../UI/Button/Button';
+import Card from './UI/Card/Card'
+import classes from './Login.css';
+import Button from './UI/Buttons/Button';
 
 const Login = (props) => {
   const [enteredEmail, setEnteredEmail] = useState('');
