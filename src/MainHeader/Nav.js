@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from './Navigation.module.css';
+import classes from './Nav.module.css';
 
 const Nav = (props) => {
   return (

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import MainPage from './components/MainPage';
 import Login from './components/Login';
+import MainHeader from './MainHeader/MainHeader';
 
 
 function App() {
@@ -29,13 +30,15 @@ function App() {
     setIsLoggedIn(false);
   };
   
+  console.log(isLoggedIn);
+  
   return (
     <>
-      <main>
-        {!isLoggedIn && <Login onLogin={logHandler}/>}
-        {isLoggedIn && <MainPage />}       
-      </main>
-
+      <MainHeader isAuth={isLoggedIn} onLogout={logoutHandler} />
+        <main>
+          {!isLoggedIn && <Login onLogin={logHandler}/>}
+          {isLoggedIn && <MainPage />}       
+        </main>
     </>
   );
 }
