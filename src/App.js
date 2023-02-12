@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import MainPage from './components/MainPage';
-import Login from './components/Login';
+import Login from './components/Login/Login';
 import MainHeader from './MainHeader/MainHeader';
 
 
