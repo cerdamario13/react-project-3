@@ -28,6 +28,7 @@ function App() {
   
   const logoutHandler = () => {
     setIsLoggedIn(false);
+    localStorage.setItem('isLoggedIn', '0');
   };
   
   console.log(isLoggedIn);
