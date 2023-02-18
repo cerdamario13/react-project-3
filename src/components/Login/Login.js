@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Card from '../UI/Card/Card'
 import classes from './Login.module.css';
@@ -10,21 +10,38 @@ const Login = (props) => {
   const [enteredPassword, setEnteredPassword] = useState('');
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
+  
+  useEffect(() => {
+    
+    //Check that this renders on every change of the dependecies
+    // console.log("Change!");
+    
+    //waiting a bit to check if the entered data is correct
+    const identifier = setTimeout(() => {
+          //check that the id and password have the appropriate items/length
+      setFormIsValid(
+        enteredEmail.includes('@') && enteredPassword.trim().length > 6
+      );  
+    }, 500);
+    
+    //clean up function
+    //Clear the timer before a new one starts
+    return () => {
+      clearTimeout(identifier);  // clear the time based on identifier
+    };
+    
+    //useEffet will run when the following are changed
+  }, [enteredEmail, enteredPassword])
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
 
-    setFormIsValid(
-      event.target.value.includes('@') && enteredPassword.trim().length > 6
-    );
+
   };
 
   const passwordChangeHandler = (event) => {
     setEnteredPassword(event.target.value);
 
-    setFormIsValid(
-      event.target.value.trim().length > 6 && enteredEmail.includes('@')
-    );
   };
 
   const validateEmailHandler = () => {

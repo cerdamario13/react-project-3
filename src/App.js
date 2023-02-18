@@ -31,7 +31,6 @@ function App() {
     localStorage.setItem('isLoggedIn', '0');
   };
   
-  console.log(isLoggedIn);
   
   return (
     <>
